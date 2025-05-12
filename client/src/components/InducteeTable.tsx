@@ -1,6 +1,27 @@
 import { useState } from "react";
-import { Link } from "wouter";
+import { useLocation } from "wouter";
 import { ArrowUpDown, User } from "lucide-react";
+
+// Fix nesting issue with Link and a elements
+const CustomLink = ({ href, children, className }: { 
+  href: string, 
+  children: React.ReactNode, 
+  className?: string
+}) => {
+  return (
+    <a 
+      href={href} 
+      className={className}
+      onClick={(e) => {
+        e.preventDefault();
+        window.history.pushState({}, "", href);
+        window.dispatchEvent(new PopStateEvent("popstate"));
+      }}
+    >
+      {children}
+    </a>
+  );
+};
 import {
   Table,
   TableBody,
@@ -177,9 +198,12 @@ const InducteeTable = ({ players }: InducteeTableProps) => {
                   className={`border-b border-gray-200 hover:bg-gray-50 transition duration-150 ${index % 2 === 1 ? "bg-gray-50" : ""}`}
                 >
                   <TableCell className="font-medium">
-                    <Link href={`/player/${player.id}`}>
-                      <a className="text-primary hover:text-secondary transition duration-200">{player.name}</a>
-                    </Link>
+                    <CustomLink 
+                      href={`/player/${player.id}`} 
+                      className="text-primary hover:text-secondary transition duration-200"
+                    >
+                      {player.name}
+                    </CustomLink>
                   </TableCell>
                   <TableCell>{player.position}</TableCell>
                   <TableCell>{player.teams}</TableCell>
@@ -188,11 +212,12 @@ const InducteeTable = ({ players }: InducteeTableProps) => {
                   <TableCell className="text-right">{player.points}</TableCell>
                   <TableCell className="text-center">{player.inducted}</TableCell>
                   <TableCell className="text-center">
-                    <Link href={`/player/${player.id}`}>
-                      <a className="text-primary hover:text-secondary inline-block">
-                        <User className="h-5 w-5" />
-                      </a>
-                    </Link>
+                    <CustomLink 
+                      href={`/player/${player.id}`} 
+                      className="text-primary hover:text-secondary inline-block"
+                    >
+                      <User className="h-5 w-5" />
+                    </CustomLink>
                   </TableCell>
                 </TableRow>
               ))}

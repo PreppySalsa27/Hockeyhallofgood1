@@ -109,46 +109,41 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <nav className="flex flex-col space-y-4">
-              <Link href="/">
-                <a
-                  className={`${isActive("/") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </a>
-              </Link>
-              <Link href="/inductees">
-                <a
-                  className={`${isActive("/inductees") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  All Inductees
-                </a>
-              </Link>
-              <Link href="/about">
-                <a
-                  className={`${isActive("/about") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  About
-                </a>
-              </Link>
-              <Link href="/rules">
-                <a
-                  className={`${isActive("/rules") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Rules
-                </a>
-              </Link>
-              <Link href="/contact">
-                <a
-                  className={`${isActive("/contact") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </a>
-              </Link>
+              <CustomLink
+                href="/"
+                className={`${isActive("/") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </CustomLink>
+              <CustomLink
+                href="/inductees"
+                className={`${isActive("/inductees") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                All Inductees
+              </CustomLink>
+              <CustomLink
+                href="/about"
+                className={`${isActive("/about") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </CustomLink>
+              <CustomLink
+                href="/rules"
+                className={`${isActive("/rules") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Rules
+              </CustomLink>
+              <CustomLink
+                href="/contact"
+                className={`${isActive("/contact") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </CustomLink>
               <a
                 href="https://instagram.com"
                 target="_blank"

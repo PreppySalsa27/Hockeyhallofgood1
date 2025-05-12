@@ -1,4 +1,25 @@
-import { Link } from "wouter";
+import { useLocation } from "wouter";
+
+// Fix nesting issue with Link and a elements
+const CustomLink = ({ href, children, className }: { 
+  href: string, 
+  children: React.ReactNode, 
+  className?: string
+}) => {
+  return (
+    <a 
+      href={href} 
+      className={className}
+      onClick={(e) => {
+        e.preventDefault();
+        window.history.pushState({}, "", href);
+        window.dispatchEvent(new PopStateEvent("popstate"));
+      }}
+    >
+      {children}
+    </a>
+  );
+};
 
 const HeroSection = () => {
   return (
@@ -13,16 +34,18 @@ const HeroSection = () => {
               Honoring remarkable players who made significant contributions to the sport but might not have reached Hall of Fame status.
             </p>
             <div className="flex space-x-4">
-              <Link href="/inductees">
-                <a className="bg-white text-primary hover:bg-accent hover:text-primary px-6 py-3 rounded-[12px] font-medium transition duration-200 shadow-lg">
-                  View Inductees
-                </a>
-              </Link>
-              <Link href="/#about">
-                <a className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary px-6 py-3 rounded-[12px] font-medium transition duration-200">
-                  Our Story
-                </a>
-              </Link>
+              <CustomLink 
+                href="/inductees" 
+                className="bg-white text-primary hover:bg-accent hover:text-primary px-6 py-3 rounded-[12px] font-medium transition duration-200 shadow-lg"
+              >
+                View Inductees
+              </CustomLink>
+              <CustomLink 
+                href="/about" 
+                className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-primary px-6 py-3 rounded-[12px] font-medium transition duration-200"
+              >
+                Our Story
+              </CustomLink>
             </div>
           </div>
           <div className="md:w-1/2 md:pl-8">
