@@ -1,7 +1,33 @@
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import { Menu, X, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+// Fix nesting issue with Link and a elements
+const CustomLink = ({ href, children, className, onClick }: { 
+  href: string, 
+  children: React.ReactNode, 
+  className?: string,
+  onClick?: () => void
+}) => {
+  const [location] = useLocation();
+  const isActive = location === href;
+  
+  return (
+    <a 
+      href={href} 
+      className={className}
+      onClick={(e) => {
+        e.preventDefault();
+        window.history.pushState({}, "", href);
+        window.dispatchEvent(new PopStateEvent("popstate"));
+        if (onClick) onClick();
+      }}
+    >
+      {children}
+    </a>
+  );
+};
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,13 +46,11 @@ const Header = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
-          <Link href="/">
-            <a className="flex items-center space-x-2">
-              <span className="text-primary font-poppins text-2xl md:text-3xl font-bold">
-                Hockey Hall of Good
-              </span>
-            </a>
-          </Link>
+          <CustomLink href="/" className="flex items-center space-x-2">
+            <span className="text-primary font-poppins text-2xl md:text-3xl font-bold">
+              Hockey Hall of Good
+            </span>
+          </CustomLink>
 
           {/* Mobile Menu Button */}
           <Button
@@ -40,31 +64,36 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/">
-              <a className={`${isActive("/") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}>
-                Home
-              </a>
-            </Link>
-            <Link href="/inductees">
-              <a className={`${isActive("/inductees") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}>
-                All Inductees
-              </a>
-            </Link>
-            <Link href="/about">
-              <a className={`${isActive("/about") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}>
-                About
-              </a>
-            </Link>
-            <Link href="/rules">
-              <a className={`${isActive("/rules") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}>
-                Rules
-              </a>
-            </Link>
-            <Link href="/contact">
-              <a className={`${isActive("/contact") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}>
-                Contact
-              </a>
-            </Link>
+            <CustomLink 
+              href="/" 
+              className={`${isActive("/") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+            >
+              Home
+            </CustomLink>
+            <CustomLink 
+              href="/inductees" 
+              className={`${isActive("/inductees") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+            >
+              All Inductees
+            </CustomLink>
+            <CustomLink 
+              href="/about" 
+              className={`${isActive("/about") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+            >
+              About
+            </CustomLink>
+            <CustomLink 
+              href="/rules" 
+              className={`${isActive("/rules") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+            >
+              Rules
+            </CustomLink>
+            <CustomLink 
+              href="/contact" 
+              className={`${isActive("/contact") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
+            >
+              Contact
+            </CustomLink>
             <a
               href="https://instagram.com"
               target="_blank"

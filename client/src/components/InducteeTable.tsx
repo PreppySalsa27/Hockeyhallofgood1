@@ -176,7 +176,11 @@ const InducteeTable = ({ players }: InducteeTableProps) => {
                   key={player.id} 
                   className={`border-b border-gray-200 hover:bg-gray-50 transition duration-150 ${index % 2 === 1 ? "bg-gray-50" : ""}`}
                 >
-                  <TableCell className="font-medium">{player.name}</TableCell>
+                  <TableCell className="font-medium">
+                    <Link href={`/player/${player.id}`}>
+                      <a className="text-primary hover:text-secondary transition duration-200">{player.name}</a>
+                    </Link>
+                  </TableCell>
                   <TableCell>{player.position}</TableCell>
                   <TableCell>{player.teams}</TableCell>
                   <TableCell className="text-right">{player.goals}</TableCell>
