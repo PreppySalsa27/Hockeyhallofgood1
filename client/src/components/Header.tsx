@@ -50,18 +50,18 @@ const Header = () => {
                 All Inductees
               </a>
             </Link>
-            <Link href="/#about">
-              <a className="text-primary hover:text-secondary font-medium transition duration-200">
+            <Link href="/about">
+              <a className={`${isActive("/about") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}>
                 About
               </a>
             </Link>
-            <Link href="/#rules">
-              <a className="text-primary hover:text-secondary font-medium transition duration-200">
+            <Link href="/rules">
+              <a className={`${isActive("/rules") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}>
                 Rules
               </a>
             </Link>
-            <Link href="/#contact">
-              <a className="text-primary hover:text-secondary font-medium transition duration-200">
+            <Link href="/contact">
+              <a className={`${isActive("/contact") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}>
                 Contact
               </a>
             </Link>
@@ -96,25 +96,25 @@ const Header = () => {
                   All Inductees
                 </a>
               </Link>
-              <Link href="/#about">
+              <Link href="/about">
                 <a
-                  className="text-primary hover:text-secondary font-medium transition duration-200"
+                  className={`${isActive("/about") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
                 </a>
               </Link>
-              <Link href="/#rules">
+              <Link href="/rules">
                 <a
-                  className="text-primary hover:text-secondary font-medium transition duration-200"
+                  className={`${isActive("/rules") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Rules
                 </a>
               </Link>
-              <Link href="/#contact">
+              <Link href="/contact">
                 <a
-                  className="text-primary hover:text-secondary font-medium transition duration-200"
+                  className={`${isActive("/contact") ? "text-secondary" : "text-primary"} hover:text-secondary font-medium transition duration-200`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact

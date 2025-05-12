@@ -7,6 +7,9 @@ import Footer from "@/components/Footer";
 import Home from "@/pages/Home";
 import AllInductees from "@/pages/AllInductees";
 import PlayerProfile from "@/pages/PlayerProfile";
+import About from "@/pages/About";
+import Rules from "@/pages/Rules";
+import Contact from "@/pages/Contact";
 
 function Router() {
   return (
@@ -14,6 +17,9 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/inductees" component={AllInductees} />
       <Route path="/player/:id" component={PlayerProfile} />
+      <Route path="/about" component={About} />
+      <Route path="/rules" component={Rules} />
+      <Route path="/contact" component={Contact} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
